@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 12, 2019 at 11:49 PM
--- Server version: 10.1.36-MariaDB
--- PHP Version: 7.2.11
+-- Generation Time: Jul 24, 2024 at 10:28 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `listrikpascabayar`
+-- Database: `pln`
 --
 
 -- --------------------------------------------------------
@@ -34,18 +33,20 @@ CREATE TABLE `tb_login` (
   `Password` varchar(255) NOT NULL,
   `NamaLengkap` varchar(100) NOT NULL,
   `Level` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tb_login`
 --
 
 INSERT INTO `tb_login` (`KodeLogin`, `Username`, `Password`, `NamaLengkap`, `Level`) VALUES
-(1, 'PLG100000000', 'PLG100000000', 'Kadek Eka Sapta Wijaya', 'Pelanggan'),
-(3, 'admin', 'admin', 'Eka Sapta', 'Admin'),
+(1, 'PLG100000000', 'PLG100000000', 'Angga', 'Pelanggan'),
+(3, 'admin', 'admin', 'Moris', 'Admin'),
 (6, 'petugas', 'petugas', 'Petugas 1', 'Petugas'),
-(7, 'PLG100000001', 'PLG100000001', 'Eka Sapta', 'Pelanggan'),
-(9, 'PLG100000002', 'PLG100000002', 'John Doe', 'Pelanggan');
+(7, 'PLG100000001', 'PLG100000001', 'Azra', 'Pelanggan'),
+(9, 'PLG100000002', 'PLG100000002', 'John Doe', 'Pelanggan'),
+(10, 'PLG100000003', 'PLG100000003', 'Anas MZ', 'Pelanggan'),
+(11, 'wawan', '123', 'Wawan Setiawan', 'Petugas');
 
 -- --------------------------------------------------------
 
@@ -61,16 +62,17 @@ CREATE TABLE `tb_pelanggan` (
   `NamaLengkap` varchar(100) NOT NULL,
   `Telp` varchar(16) NOT NULL,
   `Alamat` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tb_pelanggan`
 --
 
 INSERT INTO `tb_pelanggan` (`KodePelanggan`, `NoPelanggan`, `NoMeter`, `KodeTarif`, `NamaLengkap`, `Telp`, `Alamat`) VALUES
-(1, 'PLG100000000', '081231239', 1, 'Kadek Eka Sapta Wijaya', '081239221327', 'Jln. Nangka Selatan No.126'),
-(3, 'PLG100000001', '123982312', 5, 'Eka Sapta', '08123213123', 'Jln. Nangka Selatan'),
-(5, 'PLG100000002', '293102930', 1, 'John Doe', '081239221327', 'Jln. Nangka Selatan No.126\r\n');
+(1, 'PLG100000000', '081231239', 1, 'Angga', '081239221327', 'Jln. Nangka Selatan No.126'),
+(3, 'PLG100000001', '123982312', 5, 'Azra', '08123213123', 'Jln. Nangka Selatan'),
+(5, 'PLG100000002', '293102930', 1, 'John Doe', '081239221327', 'Jln. Nangka Selatan No.126\r\n'),
+(6, 'PLG100000003', '88823239', 5, 'Anas MZ', '085322323232', 'Sentiong');
 
 -- --------------------------------------------------------
 
@@ -85,7 +87,7 @@ CREATE TABLE `tb_pembayaran` (
   `JumlahTagihan` double(10,0) NOT NULL,
   `BuktiPembayaran` varchar(255) NOT NULL,
   `Status` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tb_pembayaran`
@@ -94,7 +96,8 @@ CREATE TABLE `tb_pembayaran` (
 INSERT INTO `tb_pembayaran` (`KodePembayaran`, `KodeTagihan`, `TglBayar`, `JumlahTagihan`, `BuktiPembayaran`, `Status`) VALUES
 (5, 5, '2019-02-12', 2010, 'TGH100000001_69BGJ3YV_1549995078.jpg', '2'),
 (6, 7, '2019-02-07', 112010, 'TGH100000003_NKM8ILJV_1549995156.jpg', '2'),
-(9, 9, '2019-02-12', 40120, 'TGH100000004_QCX490YH_1550006714.jpg', '2');
+(9, 9, '2019-02-12', 40120, 'TGH100000004_QCX490YH_1550006714.jpg', '2'),
+(11, 22, '2024-07-22', 1160112, 'TGH100000008_90MIJACL_1721662364.png', '2');
 
 -- --------------------------------------------------------
 
@@ -111,7 +114,7 @@ CREATE TABLE `tb_tagihan` (
   `JumlahPemakaian` varchar(100) NOT NULL,
   `TotalBayar` double(10,0) NOT NULL,
   `Status` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tb_tagihan`
@@ -123,7 +126,9 @@ INSERT INTO `tb_tagihan` (`KodeTagihan`, `NoTagihan`, `NoPelanggan`, `TahunTagih
 (9, 'TGH100000004', 'PLG100000001', 2019, '2', '200', 40120, '2'),
 (17, 'TGH100000005', 'PLG100000002', 2019, '1', '20', 250021, '0'),
 (18, 'TGH100000006', 'PLG100000002', 2019, '2', '30', 350031, '0'),
-(21, 'TGH100000007', 'PLG100000002', 2019, '3', '23', 280024, '0');
+(21, 'TGH100000007', 'PLG100000002', 2019, '3', '23', 280024, '0'),
+(22, 'TGH100000008', 'PLG100000002', 2024, '2', '111', 1160112, '2'),
+(23, 'TGH100000009', 'PLG100000001', 2024, '1', '111', 22320, '0');
 
 -- --------------------------------------------------------
 
@@ -136,7 +141,7 @@ CREATE TABLE `tb_tarif` (
   `Daya` varchar(50) NOT NULL,
   `TarifPerKwh` double(10,0) NOT NULL,
   `Beban` double(10,0) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tb_tarif`
@@ -193,25 +198,25 @@ ALTER TABLE `tb_tarif`
 -- AUTO_INCREMENT for table `tb_login`
 --
 ALTER TABLE `tb_login`
-  MODIFY `KodeLogin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `KodeLogin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `tb_pelanggan`
 --
 ALTER TABLE `tb_pelanggan`
-  MODIFY `KodePelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `KodePelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tb_pembayaran`
 --
 ALTER TABLE `tb_pembayaran`
-  MODIFY `KodePembayaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `KodePembayaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `tb_tagihan`
 --
 ALTER TABLE `tb_tagihan`
-  MODIFY `KodeTagihan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `KodeTagihan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `tb_tarif`
